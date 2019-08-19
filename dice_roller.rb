@@ -9,27 +9,39 @@ class Dice
   end
 
   def dice_roll
-    rand = Random.new
-    numbers = @numbers
+    sum = 0
+    valid = true
 
-    min = numbers.min
-    max = numbers.max
-    filtered_numbers = []
-    min_found = false
-    max_found = false
-
-    numbers.each do |num|
-      if num == min && !min_found
-        min_found = true
-        next
+    while sum <= 55
+      if valid
+        numbers = @numbers
+      else
+        numbers = []
+        7.times { numbers.push rand(1..20) }
       end
 
-      if num == max && !max_found
-        max_found = true
-        next
+      min = numbers.min
+      max = numbers.max
+      filtered_numbers = []
+      min_found = false
+      max_found = false
+
+      numbers.each do |num|
+        if num == min && !min_found
+          min_found = true
+          next
+        end
+
+        if num == max && !max_found
+          max_found = true
+          next
+        end
+
+        filtered_numbers.push(num)
       end
 
-      filtered_numbers.push(num)
+      valid = false
+      sum = filtered_numbers.sum
     end
 
     filtered_numbers
