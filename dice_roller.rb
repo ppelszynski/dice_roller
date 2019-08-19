@@ -1,5 +1,14 @@
 class Dice
-  def initialize(numbers = nil)
+  def initialize(numbers = nil, rnum = nil)
+    if rnum == nil
+      temp = rand(1..30)
+      if temp <= 7 && temp >= 1
+        @rnum = rand(1..30)
+      end
+    else
+      @rnum = rnum
+    end
+
     if numbers == nil
       @numbers = []
       7.times { @numbers.push rand(1..20) }
@@ -21,7 +30,14 @@ class Dice
       end
 
       min = numbers.min
-      max = numbers.max
+
+      if @rnum == 1
+        numbers.delete_at(numbers.find_index(min))
+        max = numbers.min
+      else
+        max = numbers.max
+      end
+
       filtered_numbers = []
       min_found = false
       max_found = false
@@ -44,6 +60,8 @@ class Dice
       sum = filtered_numbers.sum
       filtered_numbers.push rand(1..20)
     end
+
+
 
     filtered_numbers
   end

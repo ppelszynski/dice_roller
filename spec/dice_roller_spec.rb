@@ -16,5 +16,13 @@ describe Dice do
     sum = result.take(5).sum
     expect(result.length).to eq(6)
     expect(sum).to be >= 55
+  end
+
+  it 'excludes two lowest numbers when rnum is 1' do
+    numbers = [10, 10, 20, 20, 20, 20, 20]
+    dice = Dice.new(numbers, 1)
+    result = dice.dice_roll
+
+    expect(result.first(5)).to eq([20, 20, 20, 20, 20])
   end     
 end
