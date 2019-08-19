@@ -26,6 +26,15 @@ describe Dice do
     expect(result.first(5)).to eq([20, 20, 20, 20, 20])
   end
 
+  it 'fixes additional roll on 25 when valid rnum given' do
+    numbers = [10, 10, 20, 20, 20, 20, 20]
+    dice = Dice.new(numbers, 25)
+    result = dice.dice_roll
+
+    expect(result.last).to eq(25)
+    expect(result.length).to eq(6)
+  end     
+
   it 'returns true when user accepts numbers' do
     numbers = [10, 10, 20, 20, 20, 20, 20]
     dice1 = Dice.new(numbers, 25, 'YES!')

@@ -26,7 +26,11 @@ class Dice
       valid = false
       sum = valid_numbers.sum
       
-      valid_numbers.push rand(1..20)
+      if @rnum && @rnum >= 24 && @rnum <= 30
+        valid_numbers.push 25
+      else
+        valid_numbers.push rand(1..20)
+      end
     end
 
     valid_numbers
@@ -77,6 +81,7 @@ class Dice
     end
 
     filtered_numbers = []
+    
     min_found = false
     max_found = false
 
