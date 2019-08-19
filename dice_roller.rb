@@ -42,6 +42,7 @@ class Dice
 
       valid = false
       sum = filtered_numbers.sum
+      filtered_numbers.push rand(1..20)
     end
 
     filtered_numbers
