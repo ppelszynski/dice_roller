@@ -1,4 +1,4 @@
-require_relative '../dice_roller'
+require_relative '../dice'
 
 describe Dice do 
   it 'filters dice rolls properly' do
@@ -24,5 +24,10 @@ describe Dice do
     result = dice.dice_roll
 
     expect(result.first(5)).to eq([20, 20, 20, 20, 20])
+  end
+
+  it 'returns true when user accepts numbers' do
+    numbers = [10, 10, 20, 20, 20, 20, 20]
+    dice1 = Dice.new(numbers, 25, 'YES!')
   end     
 end
